@@ -14,6 +14,12 @@
   packages = [ pkgs.git ];
 
   # https://devenv.sh/languages/
-  languages.zig.enable = true;
-
+  languages.zig = {
+    enable = true;
+    package = pkgs.zig_0_13.overrideAttrs (old: {
+      patches = (old.patches or [ ]) ++ [
+        ./zig-asahi.patch
+      ];
+    });
+  };
 }

@@ -1,0 +1,13 @@
+diff --git a/lib/std/mem.zig b/lib/std/mem.zig
+index aff9532ecb..01f3200fa5 100644
+--- a/lib/std/mem.zig
++++ b/lib/std/mem.zig
+@@ -13,7 +13,7 @@ const native_endian = builtin.cpu.arch.endian();
+ pub const page_size = switch (builtin.cpu.arch) {
+     .wasm32, .wasm64 => 64 * 1024,
+     .aarch64 => switch (builtin.os.tag) {
+-        .macos, .ios, .watchos, .tvos, .visionos => 16 * 1024,
++        .macos, .ios, .watchos, .tvos, .visionos => 16 * 1024, .linux => 16 * 1024,
+         else => 4 * 1024,
+     },
+     .sparc64 => 8 * 1024,
