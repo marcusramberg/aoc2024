@@ -18,8 +18,6 @@ pub fn main() !void {
         try right_list.append(try std.fmt.parseInt(i64, parts.next().?, 10));
     }
 
-    std.mem.sort(i64, left_list.items, {}, std.sort.asc(i64));
-    std.mem.sort(i64, right_list.items, {}, std.sort.asc(i64));
     var similarity: i64 = 0;
     for (left_list.items) |num| {
         var count: i64 = 0;
