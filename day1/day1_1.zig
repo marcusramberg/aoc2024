@@ -14,7 +14,7 @@ pub fn main() !void {
     var buf: [1024]u8 = undefined;
     while (try in_stream.readUntilDelimiterOrEof(&buf, '\n')) |line| {
         var parts = std.mem.tokenizeScalar(u8, line, ' ');
-        try left_list.append(try std.fmt.parseInt(i64, parts.next().?, 10));
+j        try left_list.append(try std.fmt.parseInt(i64, parts.next().?, 10));
         try right_list.append(try std.fmt.parseInt(i64, parts.next().?, 10));
     }
 
