@@ -21,9 +21,9 @@ pub fn main() !void {
     std.mem.sort(i64, left_list.items, {}, std.sort.asc(i64));
     std.mem.sort(i64, right_list.items, {}, std.sort.asc(i64));
     var distance: u64 = 0;
-    for (left_list.items, 0..) |num, index| {
+    for (left_list.items, right_list.items) |left, right| {
         // std.debug.print("distance between: {d}:{d} (so far: {d})\n", .{ num, right_list.items[index], distance });
-        distance += @abs(num - right_list.items[index]);
+        distance += @abs(left - right);
     }
     std.debug.print("{d}\n", .{distance});
 }
