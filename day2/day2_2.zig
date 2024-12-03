@@ -16,16 +16,16 @@ fn isSafe(prev: i64, level: i64, increase: bool) bool {
     return true;
 }
 
-fn checkListWithout(list: std.ArrayList(i64), elem: u64) !bool {
-    var removedList = try list.clone();
-    _ = removedList.orderedRemove(elem);
-    const increase = removedList.items[0] < removedList.items[1];
+fn checkListWithout(list: std.ArrayList(i64), elem: usize) !bool {
+    const fi: u64 = if (elem < 2) 2 else 1;
+    const increase = list.items[0] < list.items[if (elem < 2) 2 else 1];
 
-    for (removedList.items, 0..) |level, i| {
-        if (i == 0) {
-            continue;
-        }
-        if (!isSafe(removedList.items[i - 1], level, increase)) {
+    for (list.items, 0..) |level, i| {
+        if (i < fi) continue;
+        std.debug.print("{d}\n", .{i});
+        const offset: usize = if (elem == i - 1) 2 else 1;
+        std.debug.print("{d}\n", .{offset});
+        if (!isSafe(list.items[i - offset], level, increase)) {
             return false;
         }
     }
